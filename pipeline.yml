@@ -1,0 +1,9 @@
+resources:
+- name: concourse-pipeline-samples
+  type: git
+  source:
+    branch: master
+    uri: https://github.com/pivotalservices/concourse-pipeline-samples.git
+
+jobs:
+- name: keystone-care
