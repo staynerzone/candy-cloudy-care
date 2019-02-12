@@ -1,9 +1,14 @@
 resources:
-- name: concourse-pipeline-samples
+- name: ccc-git
   type: git
   source:
     branch: master
-    uri: https://github.com/pivotalservices/concourse-pipeline-samples.git
+    uri: git@github.com:staynerzone/candy-cloudy-care.git
+    private_key: ((git.private))
 
 jobs:
 - name: keystone-care
+  plan:
+  - get: ccc-git
+  - task: prepare
+    file: ccc-git/tasks/prepare/prepare.yml
