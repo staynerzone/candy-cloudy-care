@@ -8,7 +8,7 @@ ORANGE='\033[0;33m' # for url names
 NC='\033[0m'
 
 function getToken {
-  export TOKEN=`curl -i -k -s https://$OS_AUTH_URL:5000/v3/auth/tokens -H "Content-Type: application/json" -d ' { "auth": { "identity": { "methods": ["password"], "password": { "user": { "name": '\"$OS_USERNAME\"', "domain": { "id": "bc273d7d1a7c47d0b6d1d42570c76099", "name": '\"${OS_AUTH_URL:8}\"' }, "password": '\"$OS_PASSWORD\"' } } }, "scope": { "project": { "name": '\"$OS_PROJECT_NAME\"', "domain": { "id": "bc273d7d1a7c47d0b6d1d42570c76099", "name": '\"${OS_AUTH_URL:8}\"' } } } } }' | awk '/X-Subject-Token/ {print $2}' | tr -d '\r'`
+  export TOKEN=`curl -i -v -k -s $OS_AUTH_URL/auth/tokens -H "Content-Type: application/json" -d ' { "auth": { "identity": { "methods": ["password"], "password": { "user": { "name": '\"$OS_USERNAME\"', "domain": { "id": "default", "name": "Default" }, "password": '\"$OS_PASSWORD\"' } } }, "scope": { "project": { "name": '\"$OS_PROJECT_NAME\"', "domain": { "id": "default", "name": "Default" } } } } }' | awk '/X-Subject-Token/ {print $2}' | tr -d '\r'`
 }
 
 getToken
