@@ -11,4 +11,4 @@ inputs:
   - name: ccc-git
 
 run:
-  path: ./ccc-git/main.sh
+  path: ccc-git/tasks/prepare/task.sh
