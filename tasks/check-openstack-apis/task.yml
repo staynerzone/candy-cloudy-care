@@ -26,4 +26,4 @@ params:
   OS_IDENTITY_API_VERSION: "3"
               
 run:
-  path: ccc-git/tasks/check-openstack-api/task.sh
+  path: ccc-git/tasks/check-openstack-apis/task.sh
