@@ -9,7 +9,7 @@ ORANGE='\033[0;33m' # for url names
 NC='\033[0m'
 
 #Get the required info and save it to the file response
-curl -s -i -k https://$OS_AUTH_URL:5000/v3/auth/tokens -H "Content-Type: application/json" -d ' { "auth": { "identity": { "methods": ["password"], "password": { "user": { "name": '\"$OS_USERNAME\"', "domain": { "id": "bc273d7d1a7c47d0b6d1d42570c76099", "name": '\"${OS_AUTH_URL:8}\"' }, "password": '\"$OS_PASSWORD\"' } } }, "scope": { "project": { "name": '\"$OS_PROJECT_NAME\"', "domain": { "id": "bc273d7d1a7c47d0b6d1d42570c76099", "name": '\"${OS_AUTH_URL:8}\"' } } } } }' 2>&1 -o response
+curl -s -i -k $OS_AUTH_URL/auth/tokens -H "Content-Type: application/json" -d ' { "auth": { "identity": { "methods": ["password"], "password": { "user": { "name": '\"$OS_USERNAME\"', "domain": { "id": "default", "name": "Default" }, "password": '\"$OS_PASSWORD\"' } } }, "scope": { "project": { "name": '\"$OS_PROJECT_NAME\"', "domain": { "id": "default", "name": "Default" } } } } }' 2>&1 -o response
 
 #Remove the first 10 lines from response and extract data from the rest of the file
 sed -e '1,10d' response | jq '.[].catalog[] | [{name: .name, interface: .endpoints[].interface, url: .endpoints[].url}]' 2>&1 > api-endpoints
