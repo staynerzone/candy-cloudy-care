@@ -19,6 +19,6 @@ openstack server create\
 echo "...created! ($TIME)"
 
 echo "Deleting ..."
-ID=$(<(openstack server list --all-projects -f json | jq '.[] | select( .Name | contains("TEST_INSTANCE")).ID' -r))
+ID=$(openstack server list --all-projects -f json | jq '.[] | select( .Name | contains("TEST_INSTANCE")).ID' -r)
 openstack server delete $ID
 echo "...deleted!"
