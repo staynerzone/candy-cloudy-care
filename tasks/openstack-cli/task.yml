@@ -1,0 +1,27 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: govau/python-openstackclient
+    tag: 'latest'
+           
+inputs:
+- name: ccc-git
+
+outputs:
+#- name: token
+#- name: alert
+
+params:
+  OS_AUTH_URL: ((os_auth_url))
+  OS_USERNAME: ((os_username))
+  OS_PASSWORD: ((os_password))
+  OS_PROJECT_NAME: ((os_project_name))
+  OS_REGION_NAME: "RegionOne"
+  OS_INTERFACE: "public"
+  OS_IDENTITY_API_VERSION: "3"
+              
+run:
+  path: ccc-git/tasks/openstack-cli/task.sh
