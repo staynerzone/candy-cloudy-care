@@ -9,16 +9,16 @@ NETWORK_ID=$(shuf -n 1 <(openstack network list  -f json | jq '.[] | select(.Nam
 
 
 echo "Creating  ..."
-TIME=$(/usr/bin/time -f'%e' \
+TIME=$(/usr/bin/time -f'%es' \
 openstack server create\
   --image $IMAGE_ID\
   --flavor $FLAVOR_ID\
   --network $NETWORK_ID\
   --wait\
   TEST_INSTANCE)
-echo "...created! ($TIME)"
+echo "...created!"
 
 echo "Deleting ..."
 ID=$(openstack server list --all-projects -f json | jq '.[] | select( .Name | contains("TEST_INSTANCE")).ID' -r)
 openstack server delete $ID
-echo "...deleted!"
+echo "...deleted! ($ID)"
