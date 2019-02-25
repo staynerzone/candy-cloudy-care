@@ -5,7 +5,7 @@ image_resource:
   type: docker-image
   source:
     repository: staynerzone/cloudy-swiss-knife
-    tag: '1.0'
+    tag: 'latest'
            
 inputs:
 - name: ccc-git
