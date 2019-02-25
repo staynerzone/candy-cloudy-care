@@ -1,6 +1,8 @@
 #!/bin/bash
 #Set the colors
 
+set -x
+
 RED='\033[0;31m' # for state
 GREEN='\033[0;32m' # for state
 CYAN='\033[0;36m' # for internal exclusions
