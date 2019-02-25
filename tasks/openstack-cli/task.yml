@@ -4,7 +4,7 @@ platform: linux
 image_resource:
   type: docker-image
   source:
-    repository: govau/python-openstackclient
+    repository: staynerzone/cloudy-swiss-knife
     tag: 'latest'
            
 inputs:
